@@ -23,7 +23,7 @@ rm -rf /var/lib/apt /var/lib/dpkg /var/lib/cache /var/lib/log
 # Tells Supervisor to run interactively rather than daemonize
 RUN echo [supervisord] | tee -a /etc/supervisor/supervisord.conf ; echo nodaemon=true | tee -a /etc/supervisor/supervisord.conf
 
-ENV STORM_VERSION 1.0.1
+ENV STORM_VERSION 1.0.2
 
 # Create storm group and user
 ENV STORM_HOME /usr/share/apache-storm
