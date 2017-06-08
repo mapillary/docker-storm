@@ -17,3 +17,7 @@ drpc.servers:
 drpc.port: 3772
 drpc.invocations.port: 3773
 
+supervisor.slots.ports:
+  - 6700
+  - 6701
+
