@@ -3,7 +3,7 @@
 #
 # Authors: Florian Hussonnois <florian.hussonnois_gmail.com>
 #
-STORM_IMAGE=peterneubauer/docker-storm
+STORM_IMAGE=mapillary/docker-storm
 
 all:
 
