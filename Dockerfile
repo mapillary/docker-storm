@@ -1,35 +1,15 @@
-# apache-storm-0.10.0
-#
-# VERSION      1.0
+FROM ubuntu:18.10
 
-# use the ubuntu base image provided by dotCloud
-FROM ubuntu:15.10
-MAINTAINER Florian HUSSONNOIS, florian.hussonnois_gmail.com
-
-RUN apt-get update
-# && \
-#apt-get upgrade -y
-
-# Install Oracle JDK 8 and others useful packages
-RUN apt-get install -y python-software-properties software-properties-common
-
-# Install Java.
-RUN add-apt-repository ppa:openjdk-r/ppa
-
-# Install java8
-RUN apt-get update && apt-get install -y openjdk-8-jdk
+# Install Java8
+RUN apt-get update && apt-get install -y openjdk-8-jdk && apt-get install -y supervisor wget tar
 
 # Setup JAVA_HOME, this is useful for docker commandline
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
 
-
-
-RUN apt-get install -y supervisor wget tar
 # Tells Supervisor to run interactively rather than daemonize
 RUN echo [supervisord] | tee -a /etc/supervisor/supervisord.conf ; echo nodaemon=true | tee -a /etc/supervisor/supervisord.conf
 
-ENV STORM_VERSION 1.0.2
+ENV STORM_VERSION 1.2.2
 
 # Create storm group and user
 ENV STORM_HOME /usr/share/apache-storm
@@ -53,7 +33,3 @@ RUN chown -R storm:storm $STORM_HOME && chmod u+x /home/storm/entrypoint.sh
 
 # Add VOLUMEs to allow backup of config and logs
 VOLUME ["/usr/share/apache-storm/conf","/var/log/storm"]
-
-
-#ENTRYPOINT ["/bin/bash", "/home/storm/entrypoint.sh"]
-
